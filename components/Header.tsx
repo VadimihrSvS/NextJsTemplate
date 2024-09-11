@@ -17,10 +17,6 @@ function Header() {
         <div className="header__titles titles-header">
           <div className="titles-header__title"><Link href='/reports'>Доклады</Link></div>
           <div className="titles-header__title"><Link href='/SPOR'>СПОР</Link></div>
-          <a className="titles-header__title" href='/schedule'>Режимы</a>
-          <a className="titles-header__title" href='/replies'>Отчёты</a>
-          <a className="titles-header__title" href='/objects'>Объекты</a>
-          <a className="titles-header__title" href='/accident'>Авария</a>
         </div>
 
 
