@@ -6,7 +6,8 @@ export default function DailyReport() {
 
     const [name, setName] = useState("");
 
-    const doIt = async () => {
+    const doIt = async (e) => {
+        e.preventDefault();
         const res = await fetch('api/addUser', {
             method: 'POST',
             headers: {
