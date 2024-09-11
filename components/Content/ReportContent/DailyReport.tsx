@@ -7,7 +7,7 @@ export default function DailyReport() {
     const [name, setName] = useState("");
 
     const doIt = async () => {
-        const res = await fetch('/api/addUser', {
+        const res = await fetch('api/addUser', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
