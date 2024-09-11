@@ -8,11 +8,11 @@ export default function ReportsNavbar() {
                 <div className="navbar__title">Оперативная сводка</div>
             </a>
             <Link href="/reports/dailyReports">
-                <a className="navbar__block" href="#">
+                <div className="navbar__block" href="#">
                     <i className="navbar__icon fa-solid fa-pencil">
                     </i>
                     <div className="navbar__title">Ежедневный доклад ГИ</div>
-                </a>
+                </div>
             </Link>
 
             <a className="navbar__block" href="#"><i className="navbar__icon fa-regular fa-calendar-days"></i>

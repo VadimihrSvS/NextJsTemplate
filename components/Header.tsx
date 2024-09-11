@@ -20,14 +20,14 @@ function Header() {
         </div>
 
 
-        <select name="form[]" className="form" data-show-selected="true">
+        {/* <select name="form[]" className="form" data-show-selected="true">
           <option value="1" selected>Доклады</option>
           <option value="2">СПОР</option>
           <option value="3">Режимы</option>
           <option value="4">Отчёты</option>
           <option value="5">Объекты</option>
           <option value="6">Авария</option>
-        </select>
+        </select> */}
 
         <div className="header__logined logined">
           {/* <img className="logined__avatar" src="avatar.jpg" /> */}
