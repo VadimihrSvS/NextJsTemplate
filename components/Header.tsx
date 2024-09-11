@@ -1,211 +1,55 @@
-import React from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { signOut, useSession } from 'next-auth/react';
+import React from 'react';
 
-const Header: React.FC = () => {
-  const router = useRouter();
-  const isActive: (pathname: string) => boolean = (pathname) =>
-    router.pathname === pathname;
-
-  const { data: session, status } = useSession();
-
-  let left = (
-    <div className="left">
-      <Link href="/">
-        <a className="bold" data-active={isActive('/')}>
-          Feed
-        </a>
-      </Link>
-      <style jsx>{`
-        .bold {
-          font-weight: bold;
-        }
-
-        a {
-          text-decoration: none;
-          color: var(--geist-foreground);
-          display: inline-block;
-        }
-
-        .left a[data-active='true'] {
-          color: gray;
-        }
-
-        a + a {
-          margin-left: 1rem;
-        }
-      `}</style>
-    </div>
-  );
-
-  let right = null;
-
-  if (status === 'loading') {
-    left = (
-      <div className="left">
-        <Link href="/">
-          <a className="bold" data-active={isActive('/')}>
-            Feed
-          </a>
-        </Link>
-        <style jsx>{`
-          .bold {
-            font-weight: bold;
-          }
-
-          a {
-            text-decoration: none;
-            color: var(--geist-foreground);
-            display: inline-block;
-          }
-
-          .left a[data-active='true'] {
-            color: gray;
-          }
-
-          a + a {
-            margin-left: 1rem;
-          }
-        `}</style>
-      </div>
-    );
-    right = (
-      <div className="right">
-        <p>Validating session ...</p>
-        <style jsx>{`
-          .right {
-            margin-left: auto;
-          }
-        `}</style>
-      </div>
-    );
-  }
-
-  if (!session) {
-    right = (
-      <div className="right">
-        <Link href="/api/auth/signin">
-          <a data-active={isActive('/signup')}>Log in</a>
-        </Link>
-        <style jsx>{`
-          a {
-            text-decoration: none;
-            color: var(--geist-foreground);
-            display: inline-block;
-          }
-
-          a + a {
-            margin-left: 1rem;
-          }
-
-          .right {
-            margin-left: auto;
-          }
-
-          .right a {
-            border: 1px solid var(--geist-foreground);
-            padding: 0.5rem 1rem;
-            border-radius: 3px;
-          }
-        `}</style>
-      </div>
-    );
-  }
-
-  if (session) {
-    left = (
-      <div className="left">
-        <Link href="/">
-          <a className="bold" data-active={isActive('/')}>
-            Feed
-          </a>
-        </Link>
-        <Link href="/drafts">
-          <a data-active={isActive('/drafts')}>My drafts</a>
-        </Link>
-        <style jsx>{`
-          .bold {
-            font-weight: bold;
-          }
-
-          a {
-            text-decoration: none;
-            color: var(--geist-foreground);
-            display: inline-block;
-          }
-
-          .left a[data-active='true'] {
-            color: gray;
-          }
-
-          a + a {
-            margin-left: 1rem;
-          }
-        `}</style>
-      </div>
-    );
-    right = (
-      <div className="right">
-        <p>
-          {session.user.name} ({session.user.email})
-        </p>
-        <Link href="/create">
-          <button>
-            <a>New post</a>
-          </button>
-        </Link>
-        <button onClick={() => signOut()}>
-          <a>Log out</a>
-        </button>
-        <style jsx>{`
-          a {
-            text-decoration: none;
-            color: var(--geist-foreground);
-            display: inline-block;
-          }
-
-          p {
-            display: inline-block;
-            font-size: 13px;
-            padding-right: 1rem;
-          }
-
-          a + a {
-            margin-left: 1rem;
-          }
-
-          .right {
-            margin-left: auto;
-          }
-
-          .right a {
-            border: 1px solid var(--geist-foreground);
-            padding: 0.5rem 1rem;
-            border-radius: 3px;
-          }
-
-          button {
-            border: none;
-          }
-        `}</style>
-      </div>
-    );
-  }
-
+function Header() {
   return (
-    <nav>
-      {left}
-      {right}
-      <style jsx>{`
-        nav {
-          display: flex;
-          padding: 2rem;
-          align-items: center;
-        }
-      `}</style>
-    </nav>
-  );
-};
+    <header className="header">
+      <div className="header__container">
+        <a className="header__logo logo" href="#">
+          <div className="logo__image"></div>
+          <div className="logo__name">Диспетчерская <br /> группа САВР</div>
+        </a>
+        <a className="header__date date" href="#">
+          <div className="date__weekday"></div>
+          <div className="date__year"></div>
+          <div className="date__time"></div>
+        </a>
+        <div className="header__titles titles-header">
+          <div className="titles-header__title"><Link href='/reports'>Доклады</Link></div>
+          <div className="titles-header__title"><Link href='/SPOR'>СПОР</Link></div>
+          <a className="titles-header__title" href='/schedule'>Режимы</a>
+          <a className="titles-header__title" href='/replies'>Отчёты</a>
+          <a className="titles-header__title" href='/objects'>Объекты</a>
+          <a className="titles-header__title" href='/accident'>Авария</a>
+        </div>
+
+
+        <select name="form[]" className="form" data-show-selected="true">
+          <option value="1" selected>Доклады</option>
+          <option value="2">СПОР</option>
+          <option value="3">Режимы</option>
+          <option value="4">Отчёты</option>
+          <option value="5">Объекты</option>
+          <option value="6">Авария</option>
+        </select>
+
+        <div className="header__logined logined">
+          {/* <img className="logined__avatar" src="avatar.jpg" /> */}
+          <div className="logined__info">Пупкин Василий</div>
+          <div className="logined__actions">
+            <a className="logined__icon fa-solid fa-caret-down" href="#"></a>
+            <div className="logined__popup popup-elements">
+              <div className="popup-elements__element">Какая-то строка</div>
+              <div className="popup-elements__element">Ещё одна строка</div>
+              <div className="popup-elements__br"></div>
+              <div className="popup-elements__element">Настройки</div>
+              <div className="popup-elements__br"></div>
+              <div className="popup-elements__element">Выйти</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>);
+}
 
 export default Header;

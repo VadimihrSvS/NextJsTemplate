@@ -1,11 +1,13 @@
-import { SessionProvider } from 'next-auth/react';
 import { AppProps } from 'next/app';
+import '../layout/index.css';
+import Layout from '../components/Layout';
+
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
-    <SessionProvider session={pageProps.session}>
+    <Layout>
       <Component {...pageProps} />
-    </SessionProvider>
+    </Layout>
   );
 };
 
